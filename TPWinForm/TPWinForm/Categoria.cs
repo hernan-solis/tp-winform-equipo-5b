@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TPWinForm
 {
-    internal class Marca
+    internal class Categoria
     {
-        public Marca() { }
-        public int Id{ get; set; }
+        public Categoria() { }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
-
     }
 }
