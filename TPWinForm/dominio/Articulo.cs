@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace TPWinForm
+namespace dominio
 {
-    internal class Articulo
+    public class Articulo
     {
         public Articulo() {
             //Inicializo la lista de imagenes para evitar errores de referencia nula

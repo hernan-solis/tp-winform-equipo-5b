@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPWinForm
+namespace dominio
 {
-    internal class Categoria
+    public class Categoria
     {
         public Categoria() { }
         public int Id { get; set; }
