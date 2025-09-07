@@ -17,17 +17,6 @@ namespace TPWinForm
         {
             InitializeComponent();
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnArticulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnMarca_Click(object sender, EventArgs e)
         {
             foreach (var item in Application.OpenForms)
@@ -50,6 +39,9 @@ namespace TPWinForm
 
         }
 
-    
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
