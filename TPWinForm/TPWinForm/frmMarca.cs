@@ -42,7 +42,7 @@ namespace TPWinForm
         private void frmMarca_Load(object sender, EventArgs e)
         {
             MarcaNegocio negocio = new MarcaNegocio();
-            dgbMarca.DataSource = negocio.listar;
+            //dgbMarca.DataSource = negocio.listar;
         }
     }
 }
