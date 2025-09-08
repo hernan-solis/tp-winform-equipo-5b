@@ -36,11 +36,13 @@
             this.btnAgregarArticulo = new System.Windows.Forms.Button();
             this.btnModificarArticulo = new System.Windows.Forms.Button();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
+            this.pbArticulo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -55,6 +57,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.pbArticulo);
             this.splitContainer1.Panel2.Controls.Add(this.btnEliminarArticulo);
             this.splitContainer1.Panel2.Controls.Add(this.btnModificarArticulo);
             this.splitContainer1.Panel2.Controls.Add(this.btnAgregarArticulo);
@@ -105,9 +108,9 @@
             this.lblArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArticulo.Location = new System.Drawing.Point(332, 20);
             this.lblArticulo.Name = "lblArticulo";
-            this.lblArticulo.Size = new System.Drawing.Size(133, 32);
+            this.lblArticulo.Size = new System.Drawing.Size(183, 32);
             this.lblArticulo.TabIndex = 1;
-            this.lblArticulo.Text = "Articulos";
+            this.lblArticulo.Text = "ARTICULOS";
             // 
             // btnAgregarArticulo
             // 
@@ -136,6 +139,14 @@
             this.btnEliminarArticulo.Text = "Eliminar";
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
             // 
+            // pbArticulo
+            // 
+            this.pbArticulo.Location = new System.Drawing.Point(28, 285);
+            this.pbArticulo.Name = "pbArticulo";
+            this.pbArticulo.Size = new System.Drawing.Size(429, 361);
+            this.pbArticulo.TabIndex = 10;
+            this.pbArticulo.TabStop = false;
+            // 
             // frmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -156,6 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -170,5 +182,6 @@
         private System.Windows.Forms.Button btnEliminarArticulo;
         private System.Windows.Forms.Button btnModificarArticulo;
         private System.Windows.Forms.Button btnAgregarArticulo;
+        private System.Windows.Forms.PictureBox pbArticulo;
     }
 }
