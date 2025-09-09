@@ -1,34 +1,33 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
 
 namespace negocio
 {
-    internal class CategoriaNegocio
+    internal class ImagenNegocio
     {
         // constructor vacio
-        public CategoriaNegocio()
+        public ImagenNegocio()
         {
-
         }
 
-        // metodo listar que devuelva una lista de categorias
-        public List<Categoria> listar()
+        public List<Imagen> listar()
         {
-            List<Categoria> lista = new List<Categoria>();
+            List<Imagen> lista = new List<Imagen>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select Id, Descripcion from CATEGORIAS");
+                datos.setearConsulta("select Id, IdArticulo, ImagenUrl from IMAGENES");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
+                    Imagen aux = new Imagen();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.Url = (string)datos.Lector["ImagenUrl"];
                     lista.Add(aux);
                 }
                 return lista;
@@ -42,12 +41,12 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void agregar(Categoria categoria)
+        public void agregar(Imagen imagen)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("insert into CATEGORIAS (Descripcion) values ('" + categoria.Descripcion + "')");
+                datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl) values (" + imagen.IdArticulo + ", '"+imagen.Url+"')");
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -60,11 +59,12 @@ namespace negocio
             }
         }
 
-        public void editar(Categoria categoria) {
+        public void editar(Imagen imagen)
+        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update CATEGORIAS set Descripcion = '" + categoria.Descripcion + "' where Id = "+ categoria.Id +" ;");
+                datos.setearConsulta("update IMAGENES set IdArticulo = " + imagen.IdArticulo + ", ImagenUrl = '"+imagen.Url+"' where Id = " + imagen.Id + " ;");
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -76,11 +76,12 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void eliminar(Categoria categoria) {
+        public void eliminar(Imagen imagen)
+        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from CATEGORIAS where Id = " + categoria.Id + " ;");
+                datos.setearConsulta("delete from IMAGENES where Id = " + imagen.Id + " ;");
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -92,5 +93,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
     }
 }
