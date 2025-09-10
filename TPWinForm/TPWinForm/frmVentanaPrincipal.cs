@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ namespace TPWinForm
 {
     public partial class frmVentanaPrincipal : Form
     {
+        private List<Articulo> listaArticulo;
         public frmVentanaPrincipal()
         {
             InitializeComponent();
@@ -39,9 +42,31 @@ namespace TPWinForm
 
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void cargar()
+        {
+             
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                listaArticulo = negocio.listar();
+                dgvArticulos.DataSource = listaArticulo;
+                dgvArticulos.Columns["IdMarca"].Visible= false;
+                dgvArticulos.Columns["IdCategoria"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void frmVentanaPrincipal_Load(object sender, EventArgs e)
+        {
+            cargar();
         }
     }
 }
