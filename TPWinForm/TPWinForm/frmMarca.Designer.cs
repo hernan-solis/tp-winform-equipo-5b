@@ -31,8 +31,8 @@
             this.btnAgregarMarca = new System.Windows.Forms.Button();
             this.btnEliminarMarca = new System.Windows.Forms.Button();
             this.btnModificarMarca = new System.Windows.Forms.Button();
-            this.dgbMarca = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgbMarca)).BeginInit();
+            this.dgvMarca = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAgregarMarca
@@ -65,21 +65,24 @@
             this.btnModificarMarca.UseVisualStyleBackColor = true;
             this.btnModificarMarca.Click += new System.EventHandler(this.btnModificarMarca_Click);
             // 
-            // dgbMarca
+            // dgvMarca
             // 
-            this.dgbMarca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgbMarca.Location = new System.Drawing.Point(31, 41);
-            this.dgbMarca.Name = "dgbMarca";
-            this.dgbMarca.Size = new System.Drawing.Size(327, 204);
-            this.dgbMarca.TabIndex = 4;
-            this.dgbMarca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbMarca_CellContentClick);
+            this.dgvMarca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMarca.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvMarca.Location = new System.Drawing.Point(31, 41);
+            this.dgvMarca.MultiSelect = false;
+            this.dgvMarca.Name = "dgvMarca";
+            this.dgvMarca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMarca.Size = new System.Drawing.Size(350, 204);
+            this.dgvMarca.TabIndex = 4;
+            this.dgvMarca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbMarca_CellContentClick);
             // 
             // frmMarca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 294);
-            this.Controls.Add(this.dgbMarca);
+            this.Controls.Add(this.dgvMarca);
             this.Controls.Add(this.btnModificarMarca);
             this.Controls.Add(this.btnEliminarMarca);
             this.Controls.Add(this.btnAgregarMarca);
@@ -89,7 +92,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMarca";
             this.Load += new System.EventHandler(this.frmMarca_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgbMarca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarca)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +102,6 @@
         private System.Windows.Forms.Button btnAgregarMarca;
         private System.Windows.Forms.Button btnEliminarMarca;
         private System.Windows.Forms.Button btnModificarMarca;
-        private System.Windows.Forms.DataGridView dgbMarca;
+        private System.Windows.Forms.DataGridView dgvMarca;
     }
 }

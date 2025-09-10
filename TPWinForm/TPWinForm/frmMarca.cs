@@ -1,4 +1,5 @@
 ﻿using negocio;
+using dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace TPWinForm
 {
     public partial class frmMarca : Form
     {
+        private List<Marca> listaMarca;
         public frmMarca()
         {
             InitializeComponent();
@@ -21,20 +23,18 @@ namespace TPWinForm
 
         private void btnAgregarMarca_Click(object sender, EventArgs e)
         {
-             //funcion cargar()
             frmAltaMarca alta = new frmAltaMarca();
             alta.ShowDialog();
-            //cargar(); 
-
+            cargar();
         }
 
         private void btnModificarMarca_Click(object sender, EventArgs e)
         {
-            //Marca seleccionada;
-            //seleccionada = (Marca)dgvMarca.CurrentRow.DataBoundItem;
-            //frmAltaMarca modificar = new frmAltaMarca(seleccionada);
-            //modificar.ShowDialog();
-            //cargar(); 
+            Marca seleccionada;
+            seleccionada = (Marca)dgvMarca.CurrentRow.DataBoundItem;
+            frmAltaMarca modificar = new frmAltaMarca(seleccionada);
+            modificar.ShowDialog();
+            cargar(); 
         }
 
         private void btnEliminarMarca_Click(object sender, EventArgs e)
@@ -49,8 +49,22 @@ namespace TPWinForm
 
         private void frmMarca_Load(object sender, EventArgs e)
         {
+            cargar();
+        }
+
+        private void cargar()
+        {
             MarcaNegocio negocio = new MarcaNegocio();
-            dgbMarca.DataSource = negocio.listar();
+            try
+            {
+                listaMarca = negocio.listar();
+                dgvMarca.DataSource = listaMarca;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

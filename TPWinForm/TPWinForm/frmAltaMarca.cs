@@ -14,6 +14,7 @@ namespace TPWinForm
 {
     public partial class frmAltaMarca : Form
     {
+        private Marca marca = null;
         public frmAltaMarca()
         {
             InitializeComponent();
@@ -22,6 +23,8 @@ namespace TPWinForm
         public frmAltaMarca(Marca marca)
         {
             InitializeComponent();
+            this.marca = marca;
+            Text = "Modificar Marca";
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,18 +39,38 @@ namespace TPWinForm
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Marca nueva = new Marca();
             MarcaNegocio negocio = new MarcaNegocio();
+
             try
             {
-               nueva.Descripcion = txtDescripcion.Text;
-                negocio.agregar(nueva);
-                MessageBox.Show("Agregada exitosamente");
+                if(marca==null)
+                    marca=new Marca();
+                marca.Descripcion = txtDescripcion.Text;
+
+                if(marca.Id!=0)
+                {
+                    negocio.agregar(marca);
+                    MessageBox.Show("Agregada exitosamente");
+                }
+                else
+                {
+                    negocio.modificar(marca);
+                    MessageBox.Show("Modificada exitosamente");
+                }
+
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void frmAltaMarca_Load(object sender, EventArgs e)
+        {
+            //precargar en modificar
+            if(marca != null) {
+                txtDescripcion.Text = marca.Descripcion;
             }
         }
     }
