@@ -21,12 +21,20 @@ namespace TPWinForm
 
         private void btnAgregarMarca_Click(object sender, EventArgs e)
         {
+             //funcion cargar()
+            frmAltaMarca alta = new frmAltaMarca();
+            alta.ShowDialog();
+            //cargar(); 
 
         }
 
         private void btnModificarMarca_Click(object sender, EventArgs e)
         {
-
+            //Marca seleccionada;
+            //seleccionada = (Marca)dgvMarca.CurrentRow.DataBoundItem;
+            //frmAltaMarca modificar = new frmAltaMarca(seleccionada);
+            //modificar.ShowDialog();
+            //cargar(); 
         }
 
         private void btnEliminarMarca_Click(object sender, EventArgs e)
