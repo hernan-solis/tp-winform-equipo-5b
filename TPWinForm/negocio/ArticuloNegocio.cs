@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, Nombre, A.Descripcion,M.Id IdMarca, M.Descripcion Marca,C.Id IdCategoria, C.Descripcion Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
+                datos.setearConsulta("select A.Id, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,12 +27,13 @@ namespace negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Marca = new Marca();
-                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    aux.Precio = (float)datos.Lector["Precio"];
+                    if (Convert.IsDBNull(datos.Lector["Precio"]))
+                        aux.Precio = 0;
+                    else
+                        aux.Precio = (float)Convert.ToDecimal(datos.Lector["Precio"]);
 
                     lista.Add(aux);
                 }

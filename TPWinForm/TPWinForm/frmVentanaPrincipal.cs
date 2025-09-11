@@ -50,8 +50,6 @@ namespace TPWinForm
             {
                 listaArticulo = negocio.listar();
                 dgvArticulos.DataSource = listaArticulo;
-                dgvArticulos.Columns["IdMarca"].Visible= false;
-                dgvArticulos.Columns["IdCategoria"].Visible = false;
             }
             catch (Exception ex)
             {

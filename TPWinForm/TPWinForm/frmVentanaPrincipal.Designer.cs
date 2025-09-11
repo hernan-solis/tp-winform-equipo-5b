@@ -43,7 +43,7 @@
             // btnMarca
             // 
             this.btnMarca.Location = new System.Drawing.Point(39, 82);
-            this.btnMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMarca.Margin = new System.Windows.Forms.Padding(4);
             this.btnMarca.Name = "btnMarca";
             this.btnMarca.Size = new System.Drawing.Size(189, 89);
             this.btnMarca.TabIndex = 4;
@@ -54,7 +54,7 @@
             // btnCategoria
             // 
             this.btnCategoria.Location = new System.Drawing.Point(39, 201);
-            this.btnCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.btnCategoria.Name = "btnCategoria";
             this.btnCategoria.Size = new System.Drawing.Size(189, 94);
             this.btnCategoria.TabIndex = 6;
@@ -64,16 +64,16 @@
             // 
             // pbArticulo
             // 
-            this.pbArticulo.Location = new System.Drawing.Point(266, 313);
+            this.pbArticulo.Location = new System.Drawing.Point(59, 380);
             this.pbArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbArticulo.Name = "pbArticulo";
-            this.pbArticulo.Size = new System.Drawing.Size(400, 324);
+            this.pbArticulo.Size = new System.Drawing.Size(97, 89);
             this.pbArticulo.TabIndex = 10;
             this.pbArticulo.TabStop = false;
             // 
             // btnEliminarArticulo
             // 
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(1180, 243);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(1289, 243);
             this.btnEliminarArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(157, 52);
@@ -83,7 +83,7 @@
             // 
             // btnModificarArticulo
             // 
-            this.btnModificarArticulo.Location = new System.Drawing.Point(1180, 152);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(1289, 150);
             this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
             this.btnModificarArticulo.Size = new System.Drawing.Size(157, 52);
@@ -93,7 +93,7 @@
             // 
             // btnAgregarArticulo
             // 
-            this.btnAgregarArticulo.Location = new System.Drawing.Point(1180, 71);
+            this.btnAgregarArticulo.Location = new System.Drawing.Point(1289, 71);
             this.btnAgregarArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarArticulo.Name = "btnAgregarArticulo";
             this.btnAgregarArticulo.Size = new System.Drawing.Size(157, 52);
@@ -124,7 +124,7 @@
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.RowTemplate.Height = 24;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(884, 224);
+            this.dgvArticulos.Size = new System.Drawing.Size(1005, 224);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentClick);
             // 
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 660);
+            this.ClientSize = new System.Drawing.Size(1458, 660);
             this.Controls.Add(this.btnMarca);
             this.Controls.Add(this.lblArticulo);
             this.Controls.Add(this.btnCategoria);
@@ -143,7 +143,7 @@
             this.Controls.Add(this.btnEliminarArticulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
