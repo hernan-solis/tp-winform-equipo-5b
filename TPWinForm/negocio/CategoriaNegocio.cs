@@ -7,7 +7,7 @@ using dominio;
 
 namespace negocio
 {
-    internal class CategoriaNegocio
+    public class CategoriaNegocio
     {
         // constructor vacio
         public CategoriaNegocio()
