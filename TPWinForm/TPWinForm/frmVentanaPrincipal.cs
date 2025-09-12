@@ -25,10 +25,10 @@ namespace TPWinForm
             foreach (var item in Application.OpenForms)
             {
                 if (item.GetType() == typeof(frmMarca))
-                { 
+                {
                     return;
                 }
-                    
+
             }
 
             frmMarca ventana = new frmMarca();
@@ -44,7 +44,7 @@ namespace TPWinForm
 
         private void cargar()
         {
-             
+
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
@@ -58,6 +58,23 @@ namespace TPWinForm
             }
         }
 
+        private void cargarPbx(PictureBox pictureBox, Articulo articulo)
+        {
+            if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+            {
+                try
+                {
+                    pictureBox.Load(articulo.Imagenes[0].Url);
+                }
+                catch (Exception)
+                {
+                    pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                }
+
+            }
+        }
+
+
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -66,6 +83,30 @@ namespace TPWinForm
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
+            cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+        }
+
+        private void pbxArticulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow != null)
+            {
+                try
+                {
+                    lblUrl.Text = (dgvArticulos.CurrentRow.DataBoundItem as Articulo).Imagenes[0].Url;
+                    cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+
+                }
+            }
+
         }
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
