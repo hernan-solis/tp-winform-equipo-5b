@@ -35,6 +35,8 @@ namespace negocio
                     else
                         aux.Precio = (float)Convert.ToDecimal(datos.Lector["Precio"]);
 
+                    aux.Imagenes = new ImagenNegocio().listarPorIdArticulo(aux.Id);
+
                     lista.Add(aux);
                 }
 
