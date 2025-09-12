@@ -100,6 +100,7 @@
             this.btnAgregarArticulo.TabIndex = 7;
             this.btnAgregarArticulo.Text = "Agregar";
             this.btnAgregarArticulo.UseVisualStyleBackColor = true;
+            this.btnAgregarArticulo.Click += new System.EventHandler(this.btnAgregarArticulo_Click);
             // 
             // lblArticulo
             // 

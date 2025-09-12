@@ -17,13 +17,14 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
+                datos.setearConsulta("select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
                     aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Marca = new Marca();
@@ -50,7 +51,25 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        
+        public void agregar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("insert into ARTICULOS (Codigo,Nombre,Descripcion,Precio) values('"+ nuevo.Codigo+"','"+nuevo.Nombre+"','"+nuevo.Descripcion+"',"+nuevo.Precio+")");
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
            
     }

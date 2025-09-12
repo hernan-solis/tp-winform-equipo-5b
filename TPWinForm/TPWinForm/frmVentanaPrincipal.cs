@@ -66,5 +66,11 @@ namespace TPWinForm
         {
             cargar();
         }
+
+        private void btnAgregarArticulo_Click(object sender, EventArgs e)
+        {
+            frmAltaArticulo altaArticulo = new frmAltaArticulo();
+            altaArticulo.ShowDialog();
+        }
     }
 }
