@@ -39,7 +39,23 @@ namespace TPWinForm
 
         private void btnEliminarMarca_Click(object sender, EventArgs e)
         {
+            MarcaNegocio negocio = new MarcaNegocio();
+            Marca seleccionada;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Esta seguro que desea eliminar el registro?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {    
+                seleccionada = (Marca)dgvMarca.CurrentRow.DataBoundItem;
+                negocio.eliminar(seleccionada.Id);
+                cargar();
+                }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void dgbMarca_CellContentClick(object sender, DataGridViewCellEventArgs e)
