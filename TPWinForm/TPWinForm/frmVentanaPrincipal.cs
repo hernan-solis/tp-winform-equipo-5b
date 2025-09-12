@@ -83,7 +83,7 @@ namespace TPWinForm
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-            //cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+            cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
         }
 
         private void pbxArticulo_Click(object sender, EventArgs e)

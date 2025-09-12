@@ -37,9 +37,9 @@
             // 
             // btnAgregarMarca
             // 
-            this.btnAgregarMarca.Location = new System.Drawing.Point(387, 41);
+            this.btnAgregarMarca.Location = new System.Drawing.Point(310, 64);
             this.btnAgregarMarca.Name = "btnAgregarMarca";
-            this.btnAgregarMarca.Size = new System.Drawing.Size(210, 54);
+            this.btnAgregarMarca.Size = new System.Drawing.Size(124, 39);
             this.btnAgregarMarca.TabIndex = 0;
             this.btnAgregarMarca.Text = "Agregar";
             this.btnAgregarMarca.UseVisualStyleBackColor = true;
@@ -47,9 +47,9 @@
             // 
             // btnEliminarMarca
             // 
-            this.btnEliminarMarca.Location = new System.Drawing.Point(387, 192);
+            this.btnEliminarMarca.Location = new System.Drawing.Point(310, 190);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
-            this.btnEliminarMarca.Size = new System.Drawing.Size(210, 53);
+            this.btnEliminarMarca.Size = new System.Drawing.Size(124, 38);
             this.btnEliminarMarca.TabIndex = 2;
             this.btnEliminarMarca.Text = "Eliminar";
             this.btnEliminarMarca.UseVisualStyleBackColor = true;
@@ -57,9 +57,9 @@
             // 
             // btnModificarMarca
             // 
-            this.btnModificarMarca.Location = new System.Drawing.Point(387, 114);
+            this.btnModificarMarca.Location = new System.Drawing.Point(310, 127);
             this.btnModificarMarca.Name = "btnModificarMarca";
-            this.btnModificarMarca.Size = new System.Drawing.Size(210, 59);
+            this.btnModificarMarca.Size = new System.Drawing.Size(124, 38);
             this.btnModificarMarca.TabIndex = 3;
             this.btnModificarMarca.Text = "Modificar";
             this.btnModificarMarca.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@
             this.dgvMarca.MultiSelect = false;
             this.dgvMarca.Name = "dgvMarca";
             this.dgvMarca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMarca.Size = new System.Drawing.Size(350, 204);
+            this.dgvMarca.Size = new System.Drawing.Size(258, 204);
             this.dgvMarca.TabIndex = 4;
             this.dgvMarca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbMarca_CellContentClick);
             // 
@@ -81,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 294);
+            this.ClientSize = new System.Drawing.Size(448, 294);
             this.Controls.Add(this.dgvMarca);
             this.Controls.Add(this.btnModificarMarca);
             this.Controls.Add(this.btnEliminarMarca);
