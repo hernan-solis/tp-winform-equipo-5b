@@ -50,6 +50,7 @@ namespace TPWinForm
             {
                 listaArticulo = negocio.listar();
                 dgvArticulos.DataSource = listaArticulo;
+                dgvArticulos.Columns["Id"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -71,6 +72,16 @@ namespace TPWinForm
         {
             frmAltaArticulo altaArticulo = new frmAltaArticulo();
             altaArticulo.ShowDialog();
+            cargar();
+        }
+
+        private void btnModificarArticulo_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargar();
         }
     }
 }

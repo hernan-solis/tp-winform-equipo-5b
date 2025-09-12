@@ -14,10 +14,18 @@ namespace TPWinForm
 {
     public partial class frmAltaArticulo : Form
     {
+        private Articulo articulo = null;
         public frmAltaArticulo()
         {
             InitializeComponent();
         }
+        public frmAltaArticulo(Articulo seleccionado)
+        {
+            InitializeComponent();
+            articulo = seleccionado;
+            Text = "Modificar Articulo";
+        }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -26,19 +34,33 @@ namespace TPWinForm
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo();
+            
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Marca = (Marca)cbMarca.SelectedItem;
-                nuevo.Categoria = (Categoria)cbCategoria.SelectedItem;
-                nuevo.Precio = float.Parse(txtPrecio.Text);
+                if(articulo==null)
+                    articulo = new Articulo();
 
-                negocio.agregar(nuevo);
-                MessageBox.Show("Agregado exitosamente");
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Marca = (Marca)cbMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cbCategoria.SelectedItem;
+                articulo.Precio = float.Parse(txtPrecio.Text);
+
+                if (articulo.Id != 0)
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else
+                {
+                    negocio.agregar(articulo);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+                  
+
+
                 Close();
             }
             catch (Exception ex)
@@ -55,7 +77,22 @@ namespace TPWinForm
             try
             {
                 cbMarca.DataSource = marcaNegocio.listar();
+                cbMarca.ValueMember = "Id";
+                cbMarca.DisplayMember = "Descripcion";
+
                 cbCategoria.DataSource = categoriaNegocio.listar();
+                cbCategoria.ValueMember = "Id";
+                cbCategoria.DisplayMember = "Descripcion";
+
+                if (articulo != null)
+                {
+                    txtCodigo.Text= articulo.Codigo;
+                    txtNombre.Text= articulo.Nombre;
+                    txtDescripcion.Text= articulo.Descripcion;
+                    cbMarca.SelectedValue = articulo.Marca.Id;
+                    cbCategoria.SelectedValue = articulo.Categoria.Id;
+                    txtPrecio.Text = articulo.Precio.ToString();
+                }
             }
             catch (Exception ex)
             {

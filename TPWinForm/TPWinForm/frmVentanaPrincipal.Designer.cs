@@ -83,13 +83,14 @@
             // 
             // btnModificarArticulo
             // 
-            this.btnModificarArticulo.Location = new System.Drawing.Point(1289, 150);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(1289, 159);
             this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
             this.btnModificarArticulo.Size = new System.Drawing.Size(157, 52);
             this.btnModificarArticulo.TabIndex = 8;
             this.btnModificarArticulo.Text = "Modificar";
             this.btnModificarArticulo.UseVisualStyleBackColor = true;
+            this.btnModificarArticulo.Click += new System.EventHandler(this.btnModificarArticulo_Click);
             // 
             // btnAgregarArticulo
             // 

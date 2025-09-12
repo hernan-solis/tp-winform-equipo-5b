@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
+                datos.setearConsulta("select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, Precio, A.IdMarca, A.IdCategoria from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id=A.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -28,14 +28,15 @@ namespace negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    if (Convert.IsDBNull(datos.Lector["Precio"]))
-                        aux.Precio = 0;
-                    else
-                        aux.Precio = (float)Convert.ToDecimal(datos.Lector["Precio"]);
 
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (float)Convert.ToDecimal(datos.Lector["Precio"]);
+                    
                     lista.Add(aux);
                 }
 
@@ -61,6 +62,33 @@ namespace negocio
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.ejecutarAccion();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar (Articulo modificado)
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo= @codigo, Nombre = @nombre, Descripcion = @desc, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @precio WHERE Id = @id;");
+                datos.setearParametro("@codigo", modificado.Codigo);
+                datos.setearParametro("@nombre", modificado.Nombre);
+                datos.setearParametro("@desc", modificado.Descripcion);
+                datos.setearParametro("@IdMarca", modificado.Marca.Id);
+                datos.setearParametro("@IdCategoria", modificado.Categoria.Id);
+                datos.setearParametro("@precio", modificado.Precio);
+                datos.setearParametro("@id", modificado.Id);
+
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
