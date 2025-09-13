@@ -190,5 +190,27 @@ namespace TPWinForm
         {
             cargarPbxAnterior(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
         }
+
+        private void btnEliminarArticulo_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio articulo = new ArticuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Esta seguro que desea ELIMINAR","Eliminado",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    articulo.eliminar(seleccionado.Id);
+                    cargar();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
