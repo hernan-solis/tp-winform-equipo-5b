@@ -32,7 +32,8 @@ namespace TPWinForm
 
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-
+            frmCategoria alta = new frmCategoria();
+            alta.ShowDialog();
         }
 
         private void cargar()
