@@ -88,6 +88,33 @@ namespace negocio
             }
         }
 
+        public void agregarImagenesDeArticulo (Articulo articulo)
+        {
+
+            if(articulo.Imagenes.Count == 0)
+                return;
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try {
+                foreach (Imagen imagen in articulo.Imagenes) {
+                    datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl) values (" + articulo.Id + ", '" + imagen.Url + "')");
+                    datos.ejecutarAccion();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+  
+        }
+
+
+
         public void editar(Imagen imagen)
         {
             AccesoDatos datos = new AccesoDatos();
