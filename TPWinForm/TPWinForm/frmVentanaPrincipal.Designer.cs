@@ -37,6 +37,11 @@
             this.lblArticulo = new System.Windows.Forms.Label();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.lblUrl = new System.Windows.Forms.Label();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.lblContadorPbx = new System.Windows.Forms.Label();
+            this.lblSeparadorPbx = new System.Windows.Forms.Label();
+            this.lblTotalPbx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
@@ -138,11 +143,57 @@
             // lblUrl
             // 
             this.lblUrl.AutoSize = true;
-            this.lblUrl.Location = new System.Drawing.Point(26, 457);
+            this.lblUrl.Location = new System.Drawing.Point(26, 483);
             this.lblUrl.Name = "lblUrl";
-            this.lblUrl.Size = new System.Drawing.Size(29, 13);
+            this.lblUrl.Size = new System.Drawing.Size(0, 13);
             this.lblUrl.TabIndex = 12;
-            this.lblUrl.Text = "URL";
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Location = new System.Drawing.Point(138, 447);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnSiguiente.TabIndex = 14;
+            this.btnSiguiente.Text = "=>";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Location = new System.Drawing.Point(29, 447);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(75, 23);
+            this.btnAnterior.TabIndex = 15;
+            this.btnAnterior.Text = "<=";
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // lblContadorPbx
+            // 
+            this.lblContadorPbx.AutoSize = true;
+            this.lblContadorPbx.Location = new System.Drawing.Point(218, 319);
+            this.lblContadorPbx.Name = "lblContadorPbx";
+            this.lblContadorPbx.Size = new System.Drawing.Size(13, 13);
+            this.lblContadorPbx.TabIndex = 16;
+            this.lblContadorPbx.Text = "0";
+            // 
+            // lblSeparadorPbx
+            // 
+            this.lblSeparadorPbx.AutoSize = true;
+            this.lblSeparadorPbx.Location = new System.Drawing.Point(219, 342);
+            this.lblSeparadorPbx.Name = "lblSeparadorPbx";
+            this.lblSeparadorPbx.Size = new System.Drawing.Size(10, 13);
+            this.lblSeparadorPbx.TabIndex = 17;
+            this.lblSeparadorPbx.Text = "-";
+            // 
+            // lblTotalPbx
+            // 
+            this.lblTotalPbx.AutoSize = true;
+            this.lblTotalPbx.Location = new System.Drawing.Point(218, 366);
+            this.lblTotalPbx.Name = "lblTotalPbx";
+            this.lblTotalPbx.Size = new System.Drawing.Size(13, 13);
+            this.lblTotalPbx.TabIndex = 18;
+            this.lblTotalPbx.Text = "0";
             // 
             // frmVentanaPrincipal
             // 
@@ -150,6 +201,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1094, 536);
+            this.Controls.Add(this.lblTotalPbx);
+            this.Controls.Add(this.lblSeparadorPbx);
+            this.Controls.Add(this.lblContadorPbx);
+            this.Controls.Add(this.btnAnterior);
+            this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.btnMarca);
             this.Controls.Add(this.lblArticulo);
@@ -186,5 +242,10 @@
         private System.Windows.Forms.Button btnAgregarArticulo;
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Label lblUrl;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Label lblContadorPbx;
+        private System.Windows.Forms.Label lblSeparadorPbx;
+        private System.Windows.Forms.Label lblTotalPbx;
     }
 }

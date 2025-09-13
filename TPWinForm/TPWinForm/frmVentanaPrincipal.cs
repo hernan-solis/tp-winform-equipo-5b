@@ -60,17 +60,73 @@ namespace TPWinForm
 
         private void cargarPbx(PictureBox pictureBox, Articulo articulo)
         {
+            lblContadorPbx.Text = "0";
+            lblTotalPbx.Text = "0";
+
             if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
             {
+                lblContadorPbx.Text = "1";
+                lblTotalPbx.Text = articulo.Imagenes.Count.ToString();
                 try
                 {
                     pictureBox.Load(articulo.Imagenes[0].Url);
+
                 }
                 catch (Exception)
                 {
                     pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                    
                 }
 
+            }
+        }
+
+        private void cargarPbxSiguiente(PictureBox pictureBox, Articulo articulo)
+        {
+            if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+            {
+                int indexActual = int.Parse(lblContadorPbx.Text)-1;
+                int indexFinal= int.Parse(lblTotalPbx.Text) - 1;
+
+                if (indexActual < indexFinal) {
+                    
+                    indexActual++;
+                    lblContadorPbx.Text = (indexActual + 1).ToString();
+                    try
+                    {
+                        pictureBox.Load(articulo.Imagenes[indexActual].Url);
+                    }
+                    catch (Exception)
+                    {
+                        pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                    }
+
+                }
+            }
+        }
+
+        private void cargarPbxAnterior(PictureBox pictureBox, Articulo articulo)
+        {
+            if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+            {
+                int indexActual = int.Parse(lblContadorPbx.Text) - 1;
+                int indexFinal = int.Parse(lblTotalPbx.Text) - 1;
+
+                if (indexActual > 0)
+                {
+
+                    indexActual--;
+                    lblContadorPbx.Text = (indexActual + 1).ToString();
+                    try
+                    {
+                        pictureBox.Load(articulo.Imagenes[indexActual].Url);
+                    }
+                    catch (Exception)
+                    {
+                        pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                    }
+
+                }
             }
         }
 
@@ -83,8 +139,7 @@ namespace TPWinForm
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-
-            //cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+            
         }
 
         private void pbxArticulo_Click(object sender, EventArgs e)
@@ -98,7 +153,7 @@ namespace TPWinForm
             {
                 try
                 {
-                    lblUrl.Text = (dgvArticulos.CurrentRow.DataBoundItem as Articulo).Imagenes[0].Url;
+                  
                     cargarPbx(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
                 }
                 catch (Exception ex)
@@ -124,6 +179,16 @@ namespace TPWinForm
             frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
             modificar.ShowDialog();
             cargar();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            cargarPbxSiguiente(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            cargarPbxAnterior(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
         }
     }
 }
