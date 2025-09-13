@@ -32,8 +32,8 @@ namespace TPWinForm
             }
 
             frmMarca ventana = new frmMarca();
-            ventana.MdiParent = this;
-            ventana.Show();
+            //ventana.MdiParent = this;
+            ventana.ShowDialog();
 
         }
 

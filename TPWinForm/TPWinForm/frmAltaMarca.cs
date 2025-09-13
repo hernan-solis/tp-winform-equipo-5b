@@ -49,13 +49,14 @@ namespace TPWinForm
 
                 if(marca.Id!=0)
                 {
-                    negocio.agregar(marca);
-                    MessageBox.Show("Agregada exitosamente");
+                    negocio.modificar(marca);
+                    MessageBox.Show("Modificada exitosamente");
                 }
                 else
                 {
-                    negocio.modificar(marca);
-                    MessageBox.Show("Modificada exitosamente");
+                    negocio.agregar(marca);
+                    MessageBox.Show("Agregada exitosamente");
+
                 }
 
                 Close();
