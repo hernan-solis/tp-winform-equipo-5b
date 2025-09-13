@@ -66,6 +66,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("update MARCAS set Descripcion = @desc Where Id = @id");
+                datos.setearParametro("@id", marca.Id);
                 datos.setearParametro("@desc", marca.Descripcion);
 
                 datos.ejecutarAccion();
