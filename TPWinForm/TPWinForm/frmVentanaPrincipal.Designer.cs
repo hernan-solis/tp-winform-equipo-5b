@@ -72,7 +72,7 @@
             // pbxArticulo
             // 
             this.pbxArticulo.Location = new System.Drawing.Point(29, 297);
-            this.pbxArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbxArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.pbxArticulo.Name = "pbxArticulo";
             this.pbxArticulo.Size = new System.Drawing.Size(184, 145);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,7 +83,7 @@
             // btnEliminarArticulo
             // 
             this.btnEliminarArticulo.Location = new System.Drawing.Point(874, 197);
-            this.btnEliminarArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminarArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(118, 42);
             this.btnEliminarArticulo.TabIndex = 9;
@@ -94,7 +94,7 @@
             // btnModificarArticulo
             // 
             this.btnModificarArticulo.Location = new System.Drawing.Point(874, 123);
-            this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificarArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
             this.btnModificarArticulo.Size = new System.Drawing.Size(118, 42);
             this.btnModificarArticulo.TabIndex = 8;
@@ -105,7 +105,7 @@
             // btnAgregarArticulo
             // 
             this.btnAgregarArticulo.Location = new System.Drawing.Point(874, 58);
-            this.btnAgregarArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregarArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregarArticulo.Name = "btnAgregarArticulo";
             this.btnAgregarArticulo.Size = new System.Drawing.Size(118, 42);
             this.btnAgregarArticulo.TabIndex = 7;
@@ -133,7 +133,7 @@
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.Location = new System.Drawing.Point(200, 58);
-            this.dgvArticulos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvArticulos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.RowHeadersWidth = 51;
@@ -201,7 +201,7 @@
             // 
             // btnFiltro
             // 
-            this.btnFiltro.Location = new System.Drawing.Point(497, 287);
+            this.btnFiltro.Location = new System.Drawing.Point(270, 376);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(75, 23);
             this.btnFiltro.TabIndex = 20;
@@ -212,11 +212,12 @@
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(305, 293);
+            this.lblFiltro.Location = new System.Drawing.Point(282, 292);
             this.lblFiltro.Name = "lblFiltro";
-            this.lblFiltro.Size = new System.Drawing.Size(40, 13);
+            this.lblFiltro.Size = new System.Drawing.Size(63, 13);
             this.lblFiltro.TabIndex = 21;
-            this.lblFiltro.Text = "Buscar";
+            this.lblFiltro.Text = "FiltroRapido";
+            this.lblFiltro.Click += new System.EventHandler(this.lblFiltro_Click);
             // 
             // txtFiltro
             // 
@@ -224,6 +225,8 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(140, 20);
             this.txtFiltro.TabIndex = 22;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
+            this.txtFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltro_KeyPress);
             // 
             // frmVentanaPrincipal
             // 
