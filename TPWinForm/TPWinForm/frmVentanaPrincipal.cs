@@ -51,6 +51,7 @@ namespace TPWinForm
             }
         }
 
+        // HELPERS DE PBX
         private void cargarPbx(PictureBox pictureBox, Articulo articulo)
         {
             lblContadorPbx.Text = "0";
@@ -74,17 +75,40 @@ namespace TPWinForm
             }
         }
 
-        private void cargarPbxSiguiente(PictureBox pictureBox, Articulo articulo)
+        private void cargarPbx(PictureBox pictureBox, List<Imagen> imagenes, Label contador, Label total)
+        {
+            contador.Text = "0";
+            total.Text = "0";
+
+            if (imagenes != null && imagenes.Count > 0)
+            {
+                contador.Text = "1";
+                total.Text = imagenes.Count.ToString();
+                try
+                {
+                    pictureBox.Load(imagenes[0].Url);
+
+                }
+                catch (Exception)
+                {
+                    pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+
+                }
+
+            }
+        }
+
+        private void cargarPbxSiguiente(PictureBox pictureBox, Articulo articulo, Label contador, Label total)
         {
             if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
             {
-                int indexActual = int.Parse(lblContadorPbx.Text)-1;
-                int indexFinal= int.Parse(lblTotalPbx.Text) - 1;
+                int indexActual = int.Parse(contador.Text)-1;
+                int indexFinal= int.Parse(total.Text) - 1;
 
                 if (indexActual < indexFinal) {
                     
                     indexActual++;
-                    lblContadorPbx.Text = (indexActual + 1).ToString();
+                    contador.Text = (indexActual + 1).ToString();
                     try
                     {
                         pictureBox.Load(articulo.Imagenes[indexActual].Url);
@@ -98,21 +122,71 @@ namespace TPWinForm
             }
         }
 
-        private void cargarPbxAnterior(PictureBox pictureBox, Articulo articulo)
+        private void cargarPbxAnterior(PictureBox pictureBox, Articulo articulo, Label contador, Label total)
         {
             if (articulo != null && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
             {
-                int indexActual = int.Parse(lblContadorPbx.Text) - 1;
-                int indexFinal = int.Parse(lblTotalPbx.Text) - 1;
+                int indexActual = int.Parse(contador.Text) - 1;
+                int indexFinal = int.Parse(total.Text) - 1;
 
                 if (indexActual > 0)
                 {
 
                     indexActual--;
-                    lblContadorPbx.Text = (indexActual + 1).ToString();
+                    contador.Text = (indexActual + 1).ToString();
                     try
                     {
                         pictureBox.Load(articulo.Imagenes[indexActual].Url);
+                    }
+                    catch (Exception)
+                    {
+                        pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                    }
+
+                }
+            }
+        }
+
+        private void cargarPbxSiguiente(PictureBox pictureBox, List<Imagen> imagenes, Label contador, Label total)
+        {
+            if (imagenes != null && imagenes.Count > 0)
+            {
+                int indexActual = int.Parse(contador.Text) - 1;
+                int indexFinal = int.Parse(total.Text) - 1;
+
+                if (indexActual < indexFinal)
+                {
+
+                    indexActual++;
+                    contador.Text = (indexActual + 1).ToString();
+                    try
+                    {
+                        pictureBox.Load(imagenes[indexActual].Url);
+                    }
+                    catch (Exception)
+                    {
+                        pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+                    }
+
+                }
+            }
+        }
+
+        private void cargarPbxAnterior(PictureBox pictureBox, List<Imagen> imagenes, Label contador, Label total)
+        {
+            if (imagenes != null && imagenes.Count > 0)
+            {
+                int indexActual = int.Parse(contador.Text) - 1;
+                int indexFinal = int.Parse(total.Text) - 1;
+
+                if (indexActual > 0)
+                {
+
+                    indexActual--;
+                    contador.Text = (indexActual + 1).ToString();
+                    try
+                    {
+                        pictureBox.Load(imagenes[indexActual].Url);
                     }
                     catch (Exception)
                     {
@@ -179,12 +253,12 @@ namespace TPWinForm
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            cargarPbxSiguiente(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+            cargarPbxSiguiente(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo, lblContadorPbx, lblTotalPbx);
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            cargarPbxAnterior(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo);
+            cargarPbxAnterior(pbxArticulo, dgvArticulos.CurrentRow.DataBoundItem as Articulo, lblContadorPbx, lblTotalPbx);
         }
 
         private void btnEliminarArticulo_Click(object sender, EventArgs e)
