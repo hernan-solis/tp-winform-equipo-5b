@@ -132,7 +132,10 @@ namespace TPWinForm
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-            
+            cboCampo.Items.Add("Precio");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
+
         }
 
         private void pbxArticulo_Click(object sender, EventArgs e)
@@ -208,20 +211,20 @@ namespace TPWinForm
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            List<Articulo> listaFiltrada;
-            string filtro = txtFiltro.Text;
-            if (filtro != "")
+            ArticuloNegocio negocio = new ArticuloNegocio();    
+            try
             {
-                listaFiltrada = listaArticulo.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Descripcion.ToUpper().Contains(filtro.ToUpper()));
-            }
-            else
-            {
-                listaFiltrada = listaArticulo;
-            }
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.SelectedText;
 
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaFiltrada;
-            dgvArticulos.Columns["Id"].Visible = false;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
@@ -249,6 +252,25 @@ namespace TPWinForm
         private void lblFiltro_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if(opcion == "Precio")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menos a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
         }
     }
     }
