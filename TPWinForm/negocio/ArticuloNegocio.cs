@@ -57,12 +57,17 @@ namespace negocio
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
+
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+
             try
             {
                 datos.setearConsulta("insert into ARTICULOS (Codigo,Nombre,Descripcion,Precio,IdMarca,IdCategoria) values('"+ nuevo.Codigo+"','"+nuevo.Nombre+"','"+nuevo.Descripcion+"',"+nuevo.Precio+",@idMarca,@idCategoria)");
                 datos.setearParametro("@idMarca",nuevo.Marca.Id);
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.ejecutarAccion();
+
+                imagenNegocio.agregarImagenesDeArticulo(nuevo);
 
             }
             catch (Exception ex)
@@ -78,7 +83,11 @@ namespace negocio
 
         public void modificar (Articulo modificado)
         {
+
             AccesoDatos datos = new AccesoDatos ();
+
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+
             try
             {
                 datos.setearConsulta("update ARTICULOS set Codigo= @codigo, Nombre = @nombre, Descripcion = @desc, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @precio WHERE Id = @id;");
@@ -91,6 +100,12 @@ namespace negocio
                 datos.setearParametro("@id", modificado.Id);
 
                 datos.ejecutarAccion();
+
+                imagenNegocio.eliminarImagenesDeArticulo(modificado);
+                imagenNegocio.agregarImagenesDeArticulo(modificado);
+
+
+
             }
             catch (Exception ex)
             {

@@ -261,6 +261,7 @@
             this.tbxUrl.Name = "tbxUrl";
             this.tbxUrl.Size = new System.Drawing.Size(397, 20);
             this.tbxUrl.TabIndex = 32;
+            this.tbxUrl.TextChanged += new System.EventHandler(this.tbxUrl_TextChanged);
             this.tbxUrl.Leave += new System.EventHandler(this.tbxUrl_Leave);
             // 
             // btnNuevaUrl

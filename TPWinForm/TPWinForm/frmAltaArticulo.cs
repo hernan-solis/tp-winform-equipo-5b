@@ -15,6 +15,8 @@ namespace TPWinForm
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+
+        private List<Imagen> imagenesAlta = new List<Imagen>();
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace TPWinForm
             
             ArticuloNegocio negocio = new ArticuloNegocio();
 
-            ImagenNegocio necogioImagenAlta = new ImagenNegocio();
+            ImagenNegocio negocioImagenAlta = new ImagenNegocio();
 
             try
             {
@@ -52,6 +54,7 @@ namespace TPWinForm
                 articulo.Marca = (Marca)cbMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cbCategoria.SelectedItem;
                 articulo.Precio = float.Parse(txtPrecio.Text);
+                articulo.Imagenes = imagenesAlta;
 
                 // AGREGAR LAS URL A LA LISTA DE IMAGENES DEL ARTICULO
 
@@ -59,17 +62,13 @@ namespace TPWinForm
                 {
                     negocio.modificar(articulo);
 
-                    // ACA FALTA MODIFICAR LISTADO DE IMAGENES 
-                    // necogioImagenAlta.modificarImagenesDeArticulo(articulo);
-                   
-
-
+    
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
                     negocio.agregar(articulo);
-                    necogioImagenAlta.agregarImagenesDeArticulo(articulo);
+                    
 
                     MessageBox.Show("Agregado exitosamente");
                 }
@@ -128,11 +127,53 @@ namespace TPWinForm
 
             if (imagenes != null && imagenes.Count > 0)
             {
+                contador.Text = "1";
                 total.Text = imagenes.Count.ToString();
                 try
                 {
                     pictureBox.Load(imagenes[0].Url);
 
+                }
+                catch (Exception)
+                {
+                    pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+
+                }
+
+            }
+        }
+
+        private void cargarPbxModificado(PictureBox pictureBox, List<Imagen> imagenes, Label contador, Label total)
+        {
+            int indice = int.Parse(lblContadorPbxAlta.Text)+1;
+
+            if (imagenes != null && imagenes.Count > 0)
+            {
+                total.Text = imagenes.Count.ToString();
+                try
+                {
+                    pictureBox.Load(imagenes[indice].Url);
+
+                }
+                catch (Exception)
+                {
+                    pictureBox.Load("https://freesvg.org/img/Placeholder.png");
+
+                }
+
+            }
+        }
+
+
+        private void cargarPbxNuevoSlot(PictureBox pictureBox, List<Imagen> imagenes, Label contador, Label total)
+        {
+
+            if (imagenes != null && imagenes.Count > 0)
+            {
+                total.Text = imagenes.Count.ToString();
+                try
+                {
+                    pictureBox.Load(imagenes[imagenes.Count + 1].Url);
                 }
                 catch (Exception)
                 {
@@ -266,7 +307,7 @@ namespace TPWinForm
             if (articulo != null) {
                 if ((int.Parse(lblContadorPbxAlta.Text) - 1)>0) {
                     articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url = tbxUrl.Text;
-                    cargarPbx(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
+                     cargarPbxModificado(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
                 }
                 
             }
@@ -274,19 +315,47 @@ namespace TPWinForm
 
         private void btnNuevaUrl_Click(object sender, EventArgs e)
         {
-            articulo.Imagenes.Add(new Imagen());
-            articulo.Imagenes[articulo.Imagenes.Count - 1].Url = "";
+            if (articulo != null)
+            {
+                articulo.Imagenes.Add(new Imagen());
+                articulo.Imagenes[articulo.Imagenes.Count - 1].Url = "";
 
-            tbxUrl.Text = articulo.Imagenes.Last().Url;
+                tbxUrl.Text = articulo.Imagenes.Last().Url;
 
-            lblTotalPbxAlta.Text = articulo.Imagenes.Count.ToString();
-            lblContadorPbxAlta.Text = articulo.Imagenes.Count.ToString();
+                lblTotalPbxAlta.Text = articulo.Imagenes.Count.ToString();
+                lblContadorPbxAlta.Text = articulo.Imagenes.Count.ToString();
 
-            cargarPbx(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
+                cargarPbxNuevoSlot(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
+            }
+            else {
+                imagenesAlta.Add(new Imagen());
+                imagenesAlta[imagenesAlta.Count - 1].Url = "";
+
+                tbxUrl.Text = imagenesAlta.Last().Url;
+
+                lblTotalPbxAlta.Text = imagenesAlta.Count.ToString();
+                lblContadorPbxAlta.Text = imagenesAlta.Count.ToString();
+
+                cargarPbxNuevoSlot(pbxArticuloAlta, imagenesAlta, lblContadorPbxAlta, lblTotalPbxAlta);
+            }
             
 
-            
+
+
         }
+
+        private void tbxUrl_TextChanged(object sender, EventArgs e)
+        {
+            if (articulo != null)
+            {
+                if ((int.Parse(lblContadorPbxAlta.Text) - 1) > 0)
+                {
+                    articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url = tbxUrl.Text;
+                    cargarPbxModificado(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
+                }
+
+            }
         }
+    }
     }
 

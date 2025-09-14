@@ -132,6 +132,8 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
         public void eliminar(Imagen imagen)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -147,6 +149,13 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarImagenesDeArticulo(Articulo articulo) {
+            foreach (Imagen imagen in articulo.Imagenes)
+            {
+                eliminar(imagen);
             }
         }
 
