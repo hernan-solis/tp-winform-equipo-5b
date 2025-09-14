@@ -60,7 +60,7 @@ namespace negocio
             }
         }
 
-        public void editar(Categoria categoria) {
+        public void modificar(Categoria categoria) {
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -76,11 +76,14 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void eliminar(Categoria categoria) {
+        public void eliminar(int id)
+        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("delete from CATEGORIAS where Id = " + categoria.Id + " ;");
+                
+                datos.setearConsulta("Delete From Categorias where id = @id");
+                datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

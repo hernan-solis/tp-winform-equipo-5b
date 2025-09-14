@@ -83,10 +83,11 @@ namespace negocio
 
         public void eliminar(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("Delet From Articulos where id = @id");
+                datos.setearConsulta("Delete From Marcas where id = @id");
                 datos.setearParametro("@id",id);
                 datos.ejecutarAccion();
             }
@@ -94,6 +95,10 @@ namespace negocio
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); 
             }
         }
 
