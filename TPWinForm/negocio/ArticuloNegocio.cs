@@ -119,9 +119,10 @@ namespace negocio
         }
         public void eliminar (int id)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos datos = new AccesoDatos ();
+                
                 datos.setearConsulta("delete from ARTICULOS where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
@@ -131,6 +132,10 @@ namespace negocio
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
@@ -160,10 +165,10 @@ namespace negocio
                 {
                     switch (criterio) 
                     {
-                    case "Mayor a":
+                    case "Comienza con":
                         consulta += "Nombre like '" + filtro + "%' ";
                         break;
-                    case "Menor a":
+                    case "Termina con":
                         consulta += "Nombre like '%" + filtro + "'";
                         break;
                     default:
@@ -176,10 +181,10 @@ namespace negocio
                 {
                     switch (criterio)
                     {
-                            case "Mayor a":
+                            case "Comienza con":
                                 consulta += "A.Descripcion like '" + filtro + "%' ";
                                 break;
-                            case "Menor a":
+                            case "Termina con":
                                 consulta += "A.Descripcion like '%" + filtro + "'";
                                 break;
                             default:
@@ -220,6 +225,11 @@ namespace negocio
 
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
 
            

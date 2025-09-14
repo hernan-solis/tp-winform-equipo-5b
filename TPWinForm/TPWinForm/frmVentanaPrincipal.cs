@@ -207,9 +207,9 @@ namespace TPWinForm
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             cargar();
-            cboCampo.Items.Add("Precio");
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Descripcion");
+            cboCampo.Items.Add("Precio");
 
         }
 
@@ -284,16 +284,61 @@ namespace TPWinForm
             }
         }
 
+        private bool validarFiltro()
+        {
+            if(cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el campo para filtrar");
+                return true;
+            }
+            if(cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor seleccione el criterio para filtrar");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Ingrese algun numero para filtrar");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Ingrese solo numeros para filtrar");
+                    return true;
+                }      
+            }
+                
+
+            return false;
+        }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (var caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;    
+            }
+            return true;
+        }
+
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();    
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            
             try
             {
+                if (validarFiltro())
+                    return;
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
-                string filtro = txtFiltroAvanzado.SelectedText;
-
+                string filtro = txtFiltroAvanzado.Text;
+                
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                
             }
             catch (Exception ex)
             {
@@ -336,7 +381,7 @@ namespace TPWinForm
             {
                 cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Mayor a");
-                cboCriterio.Items.Add("Menos a");
+                cboCriterio.Items.Add("Menor a");
                 cboCriterio.Items.Add("Igual a");
             }
             else
