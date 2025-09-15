@@ -58,6 +58,8 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
 
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+
             ImagenNegocio imagenNegocio = new ImagenNegocio();
 
             try
@@ -67,7 +69,7 @@ namespace negocio
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.ejecutarAccion();
 
-                imagenNegocio.agregarImagenesDeArticulo(nuevo);
+                imagenNegocio.agregarImagenesDeArticulo(nuevo,ultimoId());
 
             }
             catch (Exception ex)
@@ -232,7 +234,32 @@ namespace negocio
 
         }
 
-           
+        public int ultimoId()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("select MAX(Id) as Id from ARTICULOS");
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["Id"];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 
     

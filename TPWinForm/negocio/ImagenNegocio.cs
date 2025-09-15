@@ -91,28 +91,55 @@ namespace negocio
         public void agregarImagenesDeArticulo (Articulo articulo)
         {
 
-            if(articulo.Imagenes.Count == 0)
+            if (articulo.Imagenes.Count == 0)
                 return;
 
-            AccesoDatos datos = new AccesoDatos();
 
-            try {
-                foreach (Imagen imagen in articulo.Imagenes) {
-                    datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl) values (" + articulo.Id + ", '" + imagen.Url + "')");
+            foreach (Imagen imagen in articulo.Imagenes)
+            {
+                try
+                {
+                    AccesoDatos datos = new AccesoDatos();
+                    datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @Url)");
+                    datos.setearParametro("@IdArticulo", articulo.Id);
+                    datos.setearParametro("@Url", imagen.Url);
                     datos.ejecutarAccion();
+                    datos.cerrarConexion();
                 }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-  
+
+
         }
 
+        public void agregarImagenesDeArticulo(Articulo articulo, int id)
+        {
+            if (articulo.Imagenes.Count == 0)
+                return;
+
+
+                foreach (Imagen imagen in articulo.Imagenes)
+                {
+                    try {
+                        AccesoDatos datos = new AccesoDatos();
+                        datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @Url)");
+                        datos.setearParametro("@IdArticulo", id);
+                        datos.setearParametro("@Url", imagen.Url);
+                        datos.ejecutarAccion();
+                        datos.cerrarConexion();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    
+                }
+         
+        }
 
 
         public void editar(Imagen imagen)
@@ -153,9 +180,20 @@ namespace negocio
         }
 
         public void eliminarImagenesDeArticulo(Articulo articulo) {
-            foreach (Imagen imagen in articulo.Imagenes)
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                eliminar(imagen);
+                datos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", articulo.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 

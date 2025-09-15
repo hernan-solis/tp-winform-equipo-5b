@@ -56,7 +56,7 @@ namespace TPWinForm
                 articulo.Precio = float.Parse(txtPrecio.Text);
                 articulo.Imagenes = imagenesAlta;
 
-                // AGREGAR LAS URL A LA LISTA DE IMAGENES DEL ARTICULO
+      
 
                 if (articulo.Id != 0)
                 {
@@ -286,9 +286,17 @@ namespace TPWinForm
 
         private void btnAnteriorAlta_Click(object sender, EventArgs e)
         {
-            if (articulo != null) {
+            if (articulo != null)
+            {
                 cargarPbxAnterior(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
                 tbxUrl.Text = articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url;
+            }
+            else {
+                if (int.Parse(lblContadorPbxAlta.Text) > 1) {
+                    cargarPbxAnterior(pbxArticuloAlta, imagenesAlta, lblContadorPbxAlta, lblTotalPbxAlta);
+                    tbxUrl.Text = imagenesAlta[int.Parse(lblContadorPbxAlta.Text) - 1].Url;
+                }
+                
             }
                 
         }
@@ -298,19 +306,19 @@ namespace TPWinForm
             if (articulo != null) {
                 cargarPbxSiguiente(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
                 tbxUrl.Text = articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url;
-            }
+            } else {
+                if (int.Parse(lblContadorPbxAlta.Text) < int.Parse(lblTotalPbxAlta.Text)) {
+                    cargarPbxSiguiente(pbxArticuloAlta, imagenesAlta, lblContadorPbxAlta, lblTotalPbxAlta);
+                    tbxUrl.Text = imagenesAlta[int.Parse(lblContadorPbxAlta.Text) - 1].Url;
+                }
+                
+            }  
                 
         }
 
         private void tbxUrl_Leave(object sender, EventArgs e)
         {
-            if (articulo != null) {
-                if ((int.Parse(lblContadorPbxAlta.Text) - 1)>0) {
-                    articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url = tbxUrl.Text;
-                     cargarPbxModificado(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
-                }
-                
-            }
+            
         }
 
         private void btnNuevaUrl_Click(object sender, EventArgs e)
@@ -346,15 +354,35 @@ namespace TPWinForm
 
         private void tbxUrl_TextChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btnActualizarSlot_Click(object sender, EventArgs e)
+        {
+            int indice = int.Parse(lblContadorPbxAlta.Text) - 1;
+
             if (articulo != null)
             {
-                if ((int.Parse(lblContadorPbxAlta.Text) - 1) > 0)
+                if (indice >= 0 && indice < articulo.Imagenes.Count)
                 {
                     articulo.Imagenes[int.Parse(lblContadorPbxAlta.Text) - 1].Url = tbxUrl.Text;
+
                     cargarPbxModificado(pbxArticuloAlta, articulo.Imagenes, lblContadorPbxAlta, lblTotalPbxAlta);
+                    MessageBox.Show("Actualizado pero falta confirmacion final");
                 }
 
             }
+            else {
+                if (indice >= 0 && indice < imagenesAlta.Count) {
+                    imagenesAlta[indice].Url = tbxUrl.Text;
+                    cargarPbxModificado(pbxArticuloAlta, imagenesAlta, lblContadorPbxAlta, lblTotalPbxAlta);
+                    MessageBox.Show("Actualizado pero falta confirmacion final");
+                }
+                    
+
+            }
+
+
         }
     }
     }

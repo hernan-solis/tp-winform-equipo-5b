@@ -52,6 +52,7 @@
             this.tbxUrl = new System.Windows.Forms.TextBox();
             this.btnNuevaUrl = new System.Windows.Forms.Button();
             this.btnEliminarUrl = new System.Windows.Forms.Button();
+            this.btnActualizarSlot = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloAlta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -283,11 +284,22 @@
             this.btnEliminarUrl.Text = "Eliminar Slot Url ";
             this.btnEliminarUrl.UseVisualStyleBackColor = true;
             // 
+            // btnActualizarSlot
+            // 
+            this.btnActualizarSlot.Location = new System.Drawing.Point(62, 466);
+            this.btnActualizarSlot.Name = "btnActualizarSlot";
+            this.btnActualizarSlot.Size = new System.Drawing.Size(144, 23);
+            this.btnActualizarSlot.TabIndex = 35;
+            this.btnActualizarSlot.Text = "Actualizar URL en SLOT";
+            this.btnActualizarSlot.UseVisualStyleBackColor = true;
+            this.btnActualizarSlot.Click += new System.EventHandler(this.btnActualizarSlot_Click);
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 593);
+            this.Controls.Add(this.btnActualizarSlot);
             this.Controls.Add(this.btnEliminarUrl);
             this.Controls.Add(this.btnNuevaUrl);
             this.Controls.Add(this.tbxUrl);
@@ -349,5 +361,6 @@
         private System.Windows.Forms.TextBox tbxUrl;
         private System.Windows.Forms.Button btnNuevaUrl;
         private System.Windows.Forms.Button btnEliminarUrl;
+        private System.Windows.Forms.Button btnActualizarSlot;
     }
 }
