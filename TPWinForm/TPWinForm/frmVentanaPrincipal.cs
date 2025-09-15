@@ -392,5 +392,13 @@ namespace TPWinForm
                 cboCriterio.Items.Add("Contiene");
             }
         }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmDetalleArticulo detalle = new frmDetalleArticulo(seleccionado);
+            detalle.ShowDialog();
+        }
     }
     }
